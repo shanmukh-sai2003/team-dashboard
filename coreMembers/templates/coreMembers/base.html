@@ -1,0 +1,231 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{% static 'coreMembers/styles.css' %}"> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+        
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        :root {
+            --body-bg: hsl(207, 26%, 17%);
+            --body-color: hsl(0, 0%, 100%);
+            --header-bg: hsl(209, 23%, 22%);
+            --box-shadow: hsl(209, 23%, 22%);
+        }
+
+        body {
+            background-color: var(--body-bg);
+            color: var(--body-color);
+            font-family: 'Nunito Sans', sans-serif;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            padding: 25px;
+            box-shadow: 0px 1px 1px 1px var(--box-shadow);
+        }
+
+        header h1 {
+            margin-left: 100px;
+            display: inline-block;
+        }
+
+        .navbar {
+            display: inline-block;
+            float: right;
+            margin-right: 100px;
+        }
+
+        .navbar .navlinks {
+            list-style: none;
+        }
+
+        .navbar .navlinks li {
+            display: inline-block;
+            font-size: 1.15rem;
+            padding: 10px 10px;
+            background-color: var(--body-bg);
+            margin-right: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .navbar .navlinks li:hover {
+            border-radius: 16px;
+        }
+        .cards {
+            margin: 50px 100px;
+        }
+
+        .card {
+            padding: 20px 25px;
+            background-color: var(--header-bg);
+            display: inline-block;
+            border-radius: 16px;
+            margin-right: 15px;
+        }
+
+        .card * {
+            margin: 10px 0px;
+        }
+
+        .card .options {
+            margin-top: 15px;
+        }
+
+        .card form {
+            display: inline-block;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--body-color);
+        }
+
+        button {
+            background-color: var(--body-bg);
+            color: var(--body-color);
+            border: none;
+            padding: 5px 15px;
+            font-size: 1.15rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            border-radius: 16px;
+        }
+
+        #delete, #update, #add {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(244, 241, 241, 0.3);
+            display: none;
+        }
+
+        #delete-form, #update-form, #add-form {
+            position: absolute;
+            top: 40%;
+            left: 35%;
+            background-color: var(--header-bg);
+            padding: 50px 100px;
+            border-radius: 24px;
+        }
+
+        #delete-form p {
+            margin-bottom: 20px;
+        }
+
+        #update-form, #add-form {
+            top: 27%;
+            left: 38%;
+            padding: 30px 25px;
+        }
+
+        .post-form input {
+            color: var(--header-bg);
+            display: block;
+            margin-bottom: 15px;
+            width: 20vw;
+            padding: 5px;
+            height: 20px;
+            border-radius: 8px;
+        }
+
+        .post-form button {
+            margin-top: 20px;
+        }
+
+        .message {
+            margin: 15px 0px;
+        }
+
+        .login-main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .login-main div {
+            width: 25%;
+            background-color: var(--header-bg);
+            box-shadow: 0px 1px 1px 1px var(--box-shadow);
+            border-radius: 8px;
+            padding: 10px 0;
+        }
+
+        .login-main form {
+            margin: 20px 50px;
+            text-align: left;
+        }
+
+        .login-main input {
+            display: block;
+            color: var(--header-bg);
+            padding: 5px;
+            height: 20px;
+            width: 15vw;
+            border-radius: 8px;
+            border: none;
+        }
+
+        input:focus-visible {
+            outline: none;
+        }
+
+        .login-main label {
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .login-main button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            background-color: var(--body-bg);
+            border: none;
+            box-shadow: 0px 1px 1px 1px var(--box-shadow);
+            color: var(--body-color);
+        }
+
+        .login-main a {
+            color: var(--body-color);
+        }
+    </style>
+    <title>Team Dashboard</title>
+</head>
+<body>
+    
+
+    {% block content %}
+    {% endblock %}
+    
+    <!-- <script src="{% static 'coreMembers/index.js' %}"></script> -->
+    <script>
+        function deleteOperation(event) {
+            const id = Number(event.target.parentElement.id.slice(1));
+            const deletePage = document.getElementById('delete');
+            const deleteForm = document.getElementById('delete-form');
+            deleteForm.setAttribute("action", 'delete/' + id + '/');
+            deletePage.style.display = "block";
+        }
+
+
+        function cancleDelete() {
+            const deletePage = document.getElementById('delete');
+            deletePage.style.display = "none";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends 'coreMembers/index.html' %}
+
+{% block operation %}
+    <div id="add" style="display: block;" class="post-form">
+        <form id="add-form" method="post">
+            {% if message %}
+                <h3 class="message">!!! {{message}}</h3>
+            {% endif %}
+            {% csrf_token %}
+            <label for="name">name</label>
+            <input type="text" value="{{name}}" name="name">
+            <label for="role">role</label>
+            <input type="text" value="{{role}}" name="role">
+            <label for="email">email</label>
+            <input type="email" value="{{email}}" name="email">
+            <label for="phone">phone</label>
+            <input type="text" value="{{phone}}" name="phone">
+            
+            <button type="submit">add</button>
+            <a href="{% url 'home' %}"><button class="cancle-btn" type="button">cancle</button></a>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'coreMembers/base.html' %}
+
+{% block content %} 
+    {% block operation %} 
+    {% endblock %}
+    <div id="delete">
+        <form id="delete-form" method="get">
+            <p>Do you want to delete this team member?</p>
+            <button type="submit">yes</button>
+            <button class="cancle-btn" onclick="cancleDelete()" type="button">cancle</button>
+        </form>  
+    </div>
+    <header class="header">
+        <h1>Hello Lead!</h1>
+        <nav class="navbar">
+            <ul class="navlinks">
+                <a href="logout/"><li>logout</li></a>
+                <a href="add/"><li onclick="addOperation(event)">add</li></a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="cards">
+            {% for member in members %}
+                <div class="card" >
+                    <h2>{{member.name}}</h2>
+                    <h3>{{member.role}}</h3>
+                    <h4>{{member.email}}</h4>
+                    <h4>{{member.phone}}</h4>
+                    <div class="options" id="I{{member.id}}">
+                        <button class="update-btn" onclick="updateOperation(event)"><a href="update/{{member.id}}">update</a></button>
+                        <button class="delete-btn" onclick="deleteOperation(event)">delete</button>      
+                    </div> 
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}
